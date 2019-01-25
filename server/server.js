@@ -17,7 +17,8 @@ app.use((req, res, next)=> {
 app.post('/formsubmissions', (req, res) => {
     console.log(req.body.name);
     console.log(req.body.email);
-    let formValue = (`${req.body.name}${req.body.email}`);
+    
+    let formValue = JSON.stringify(`${req.body.name}${req.body.email}`);
     
     fs.writeFile(formSubmit, formValue, (err) => {
         if(err) console.log(err);

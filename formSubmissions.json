@@ -1,1 +1,6 @@
-"Blaketest@test.com"
+[
+  {
+    "name": "Blake",
+    "email": "test@test.com"
+  }
+]

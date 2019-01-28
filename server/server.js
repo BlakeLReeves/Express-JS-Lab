@@ -17,12 +17,25 @@ app.use((req, res, next)=> {
 app.post('/formsubmissions', (req, res) => {
     console.log(req.body.name);
     console.log(req.body.email);
-    
-    let formValue = JSON.stringify(`${req.body.name}${req.body.email}`);
+
+    let formData = [{
+        name: req.body.name,
+        email: req.body.email
+    }];
+
+    let formValue = JSON.stringify(formData, null, 2);
     
     fs.writeFile(formSubmit, formValue, (err) => {
         if(err) console.log(err);
-    });
+    })
+
+    let readData = fs.readFile('./formSubmissions.json', (err) => {
+        if(err) console.log(err);
+    })
+
+    fs.writeFile(formSubmit, readData, (err) => {
+        if(err) console.log(err);
+    })
 
     res.send('Thank you for submitting your contact form.');
 });
